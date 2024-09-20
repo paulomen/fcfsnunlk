@@ -47,18 +47,6 @@ def clear_content_analyser() -> None:
 	CONTENT_ANALYSER = None
 
 
-def pre_check() -> bool:
-	download_directory_path = resolve_relative_path('../.assets/models')
-	model_url = MODELS.get('open_nsfw').get('url')
-	model_path = MODELS.get('open_nsfw').get('path')
-
-	if not facefusion.globals.skip_download:
-		process_manager.check()
-		conditional_download(download_directory_path, [ model_url ])
-		process_manager.end()
-	return is_file(model_path)
-
-
 def analyse_stream(vision_frame : VisionFrame, video_fps : Fps) -> bool:
 	global STREAM_COUNTER
 
